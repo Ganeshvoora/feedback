@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+Feedback Portal
+A comprehensive feedback management system built with Next.js, NextAuth.js, and Prisma.
 
-First, run the development server:
+Project Overview
+This feedback portal allows users to submit and track feedback, while administrators can review and manage all feedback submissions. The application features role-based access control, authentication, and a responsive user interface.
 
-```bash
+Features
+Authentication System: Secure login and registration with NextAuth.js
+Role-Based Access Control: Different experiences for users and administrators
+Feedback Submission: Users can submit detailed feedback with titles and descriptions
+Feedback Management: Administrators can view, filter, and update the status of feedback
+Responsive Design: Built with Tailwind CSS for a beautiful experience on all devices
+Tech Stack
+Framework: Next.js 13+ (App Router)
+Authentication: NextAuth.js
+Database ORM: Prisma
+Styling: Tailwind CSS
+Database: MongoDB (via Prisma)
+Getting Started
+Prerequisites
+Node.js 16.8 or later
+MongoDB database (local or cloud-hosted)
+Environment Setup
+Create a .env.local file in the root directory with the following variables:
+DATABASE_URL="your-mongodb-connection-string"
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="generate-a-secure-secret-here"
+
+Installation
+# Install dependencies
+npm install
+
+# Generate Prisma client
+npx prisma generate
+
+# Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Open http://localhost:3000 with your browser to see the result.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Project Structure
+/app                  # App Router pages and API routes
+  /admin              # Admin-specific pages
+  /api                # API endpoints
+    /auth             # Authentication API
+    /feedback         # Feedback API
+  /feedback           # Feedback submission pages
+  /signin             # Authentication pages
+  /signup             # User registration
+/components           # Reusable UI components
+/prisma               # Database schema and client
+/public               # Static assets
+Authentication
+The application uses NextAuth.js with a custom credentials provider. Users can register with a username, email, and password, and are assigned a role (user/admin).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+API Routes
+POST /api/auth/signup: Create a new user account
+POST /api/feedback: Submit new feedback
+GET /api/feedback: Retrieve feedback for the current user
+GET /api/admin/feedback: Admin-only endpoint to retrieve all feedback
+Database Schema
+Key models in the database:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+User: Stores user accounts with authentication details
+Feedback: Stores feedback submissions linked to users
+Learn More
+To understand more about the technologies used:
 
-## Learn More
+Next.js Documentation
+NextAuth.js Documentation
+Prisma Documentation
+Tailwind CSS Documentation
+Deployment
+Deploy this application using:
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Vercel (recommended for Next.js projects)
+Any platform supporting Node.js applications
+License
